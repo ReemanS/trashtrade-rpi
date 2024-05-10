@@ -7,34 +7,18 @@ export function Home() {
       <div class="logo-wrapper">
         <img src={trashTradeLogo} alt="TrashTrade logo" />
       </div>
-
-      <h1>Get Started building Vite-powered Preact Assspeepssss </h1>
-      <section>
-        <Resource
-          title="Learn Preact"
-          description="If you're new to Preact, try the interactive tutorial to learn important concepts"
-          href="https://preactjs.com/tutorial"
-        />
-        <Resource
-          title="Differences to React"
-          description="If you're coming from React, you may want to check out our docs to see where Preact differs"
-          href="https://preactjs.com/guide/v10/differences-to-react"
-        />
-        <Resource
-          title="Learn Vite"
-          description="To learn more about Vite and how you can customize it to fit your needs, take a look at their excellent documentation"
-          href="https://vitejs.dev"
-        />
-      </section>
+      <h1>Welcome to TrashTrade</h1>
+      <p>
+        TrashTrade is a platform that allows you to trade your trash for
+        something more valuable.
+      </p>
+      <button class="action-button" onClick={handleClick}>
+        Start Transaction
+      </button>
     </div>
   );
 }
 
-function Resource(props) {
-  return (
-    <a href={props.href} target="_blank" class="resource">
-      <h2>{props.title}</h2>
-      <p>{props.description}</p>
-    </a>
-  );
-}
+const handleClick = () => {
+  console.log("Transaction started");
+};
