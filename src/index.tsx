@@ -4,6 +4,8 @@ import { LocationProvider, Router, Route } from "preact-iso";
 import { Home } from "./pages/Home/index.jsx";
 import { NotFound } from "./pages/_404.jsx";
 import { Transaction } from "./pages/Transaction/index.js";
+import { Summary } from "./pages/Summary/index.js";
+import { QRScreen } from "./pages/QRScreen/index.js";
 import { createAppState } from "./models/app-state.js";
 
 import "./style.css";
@@ -16,7 +18,9 @@ export function App() {
         <Router>
           <Home path="/" />
           <Transaction state={appState} path="/transaction" />
-          <Route default component={NotFound} />
+          <Summary state={appState} path="/summary" />
+          <QRScreen state={appState} path="/scanqr" />
+          <NotFound default />
         </Router>
       </main>
     </LocationProvider>

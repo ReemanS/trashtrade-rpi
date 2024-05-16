@@ -21,7 +21,7 @@ const TRASH_POINT_VALUES = {
   paper: 1.5,
   plastic: 9.5,
   glass: 1,
-  metal: 77,
+  metallic: 77,
   cardboard: 2,
 };
 
@@ -107,13 +107,21 @@ export class TotalTrashRecords {
       Math.round(this.individualWaste.metal * 100) / 100;
     this.individualWaste.cardboard =
       Math.round(this.individualWaste.cardboard * 100) / 100;
+
+    // convert the values to kilograms instead of grams
+    this.totalWeight /= 1000;
+    this.individualWaste.paper /= 1000;
+    this.individualWaste.plastic /= 1000;
+    this.individualWaste.glass /= 1000;
+    this.individualWaste.metal /= 1000;
+    this.individualWaste.cardboard /= 1000;
   }
 
-  public getJSONString(): String {
+  public getJSONString(): string {
     return JSON.stringify(this);
   }
 
-  public getMinifiedJSONString(): String {
+  public getMinifiedJSONString(): string {
     return `{"tp":${this.totalPoints},"tw":${this.totalWeight},"ir":${this.itemsRecycled},"iw":{"p":${this.individualWaste.paper},"pl":${this.individualWaste.plastic},"g":${this.individualWaste.glass},"m":${this.individualWaste.metal},"c":${this.individualWaste.cardboard}}}`;
   }
 }

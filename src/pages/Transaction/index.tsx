@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 import "./style.css";
 import Webcam from "react-webcam";
-import { TrashRecord, TotalTrashRecords } from "../../models/trashrecords";
+import { TrashRecord, TotalTrashRecords } from "../../models/trash-records";
 import { useLocation } from "preact-iso";
 import { signal } from "@preact/signals";
 import { TrashState } from "../../models/app-state";
@@ -36,15 +36,18 @@ export function Transaction({ state }: { state: TrashState }) {
     }
 
     const result = await response.json();
-    state.detectedTrash.value = result;
+    let record = new TrashRecord(result.trashType, result.trashWeightGrams);
+    state.detectedTrash.value = record;
     setIscapturing(false);
 
-    // TODO: use the result
-    // screen that shows the summary of trash, with options to rescan trash, scan more trash, or finish transaction
+    location.route("/summary");
   }, [webcamRef]);
 
   const handleClick = () => {
+    console.log("trashDetected:");
     console.log(state.detectedTrash.value);
+    console.log("trashRecords:");
+    console.log(state.trashRecords.value);
   };
 
   return (

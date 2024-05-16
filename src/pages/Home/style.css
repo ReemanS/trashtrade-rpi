@@ -3,11 +3,6 @@
   object-fit: contain;
 }
 
-h1 {
-  color: var(--primary);
-  margin-bottom: 0;
-}
-
 p {
   margin-bottom: 2em;
 }

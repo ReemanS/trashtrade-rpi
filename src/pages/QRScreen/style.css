@@ -1,0 +1,9 @@
+p {
+  color: var(--primary);
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.qr-code {
+  width: 320px;
+}

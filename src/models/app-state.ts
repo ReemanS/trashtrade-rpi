@@ -1,5 +1,5 @@
 import { Signal, signal } from "@preact/signals";
-import { TrashRecord } from "./trashrecords";
+import { TrashRecord } from "./trash-records";
 
 export function createAppState() {
   const trashRecords = signal<TrashRecord[]>([]);

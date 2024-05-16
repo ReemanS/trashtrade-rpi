@@ -1,0 +1,37 @@
+.label {
+  font-weight: bold;
+}
+
+span {
+  color: var(--primary);
+  font-size: 1.25em;
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.empty-space-1x {
+  height: 1em;
+}
+
+.empty-space-2x {
+  height: 2em;
+}
+
+.action-button-small.secondary {
+  background-color: var(--secondary);
+}
+
+.action-button-small.secondary {
+  background-color: var(--secondary);
+}
