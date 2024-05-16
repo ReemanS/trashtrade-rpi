@@ -6,3 +6,11 @@
   display: flex;
   overflow: hidden;
 }
+
+.action-button-small.back-button {
+  background-color: var(--secondary);
+}
+
+.action-button-small.help-button {
+  background-color: var(--secondary);
+}

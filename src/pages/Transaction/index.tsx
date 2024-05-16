@@ -1,7 +1,10 @@
-import { useCallback, useRef, useState } from "preact/hooks";
+import { useCallback, useEffect, useRef, useState } from "preact/hooks";
 import "./style.css";
 import Webcam from "react-webcam";
 import { TrashRecord, TotalTrashRecords } from "../../models/trashrecords";
+import { useLocation } from "preact-iso";
+import { signal } from "@preact/signals";
+import { TrashState } from "../../models/app-state";
 
 const videoConstraints = {
   height: 768,
@@ -9,9 +12,12 @@ const videoConstraints = {
   facingMode: "user",
 };
 
-export function Transaction() {
+export function Transaction({ state }: { state: TrashState }) {
   const [isCapturing, setIscapturing] = useState<boolean>(false);
+
   const webcamRef = useRef(null);
+  const location = useLocation();
+
   const capture = useCallback(async () => {
     const imageSrc: String = webcamRef.current.getScreenshot();
     setIscapturing(true);
@@ -30,11 +36,16 @@ export function Transaction() {
     }
 
     const result = await response.json();
-    console.log(result);
+    state.detectedTrash.value = result;
     setIscapturing(false);
 
     // TODO: use the result
+    // screen that shows the summary of trash, with options to rescan trash, scan more trash, or finish transaction
   }, [webcamRef]);
+
+  const handleClick = () => {
+    console.log(state.detectedTrash.value);
+  };
 
   return (
     <div>
@@ -46,17 +57,35 @@ export function Transaction() {
           videoConstraints={videoConstraints}
         />
       </div>
-      <button
-        className="action-button-small"
-        onClick={capture}
-        disabled={isCapturing}
-      >
-        {!isCapturing ? (
-          <div>Scan Trash on Platform</div>
-        ) : (
-          <div class="loading-circle"></div>
+      <div className="buttons-bar">
+        {!isCapturing && (
+          <button
+            className="action-button-small back-button"
+            onClick={() => location.route("/")}
+          >
+            Back
+          </button>
         )}
-      </button>
+        <button
+          className="action-button-small"
+          onClick={capture}
+          disabled={isCapturing}
+        >
+          {!isCapturing ? (
+            <div>Scan Trash on Platform</div>
+          ) : (
+            <div class="loading-circle"></div>
+          )}
+        </button>
+        {!isCapturing && (
+          <button
+            className="action-button-small help-button"
+            onClick={handleClick}
+          >
+            Help
+          </button>
+        )}
+      </div>
     </div>
   );
 }
