@@ -7,8 +7,10 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"lean-qr": "^2.3.4",
 		"preact": "^10.20.0",
-		"preact-iso": "^2.6.2"
+		"preact-iso": "^2.6.2",
+		"react-webcam": "^7.2.0"
 	},
 	"devDependencies": {
 		"@preact/preset-vite": "^2.8.2",

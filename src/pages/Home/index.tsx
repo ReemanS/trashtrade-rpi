@@ -1,9 +1,12 @@
+import { useLocation } from "preact-iso";
 import trashTradeLogo from "../../assets/trashtrade-logo-1x.png";
 import "./style.css";
 
 export function Home() {
+  const location = useLocation();
+
   return (
-    <div class="home">
+    <div>
       <div class="logo-wrapper">
         <img src={trashTradeLogo} alt="TrashTrade logo" />
       </div>
@@ -12,13 +15,12 @@ export function Home() {
         TrashTrade is a platform that allows you to trade your trash for
         something more valuable.
       </p>
-      <button class="action-button" onClick={handleClick}>
+      <button
+        class="action-button"
+        onClick={() => location.route("/transaction")}
+      >
         Start Transaction
       </button>
     </div>
   );
 }
-
-const handleClick = () => {
-  console.log("Transaction started");
-};

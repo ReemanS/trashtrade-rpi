@@ -1,0 +1,8 @@
+.camera-box {
+  height: 384px;
+  width: 512px;
+  margin-bottom: 1em;
+  border-radius: 1em;
+  display: flex;
+  overflow: hidden;
+}
